@@ -82,6 +82,17 @@ nav .links a:hover{opacity:1;color:var(--gold)}
 .fig:last-child{border-right:0}
 .fig b{display:block;font-family:var(--serif);font-size:clamp(30px,4vw,46px);line-height:1;color:#fff}
 .fig span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9098}
+@media(max-width:640px){
+ .figures{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:30px}
+ .fig{flex:none;margin:0;padding:15px 10px 13px 0;border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+ .fig:nth-child(2n){border-right:0;padding-left:14px}
+ .fig:last-child{grid-column:1/-1;border-right:0;border-bottom:0;padding-left:0}
+ .fig b{font-size:34px}
+ .fig span{font-size:9px;letter-spacing:.1em;line-height:1.35;display:block}
+ .hero .sub{font-size:16px;max-width:none}
+ .hero-badge img{width:52px;height:52px}
+ .hero-badge .t{font-size:10px;letter-spacing:.16em}
+}
 .scroll-cue{margin-top:38px;display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none}
 .scroll-cue span{display:inline-block;animation:bob 1.8s infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -206,7 +217,7 @@ nav .links a:hover{opacity:1;color:var(--gold)}
 
 /* tabs */
 .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:clamp(18px,3vw,30px);flex-wrap:wrap}
-.tab{padding:13px 20px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--smoke);transition:.2s;background:none;border-top:0;border-left:0;border-right:0}
+.tab{padding:13px 20px;flex:0 0 auto;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;color:var(--smoke);transition:.2s;background:none;border-top:0;border-left:0;border-right:0}
 .tab:hover{color:var(--ink)}
 .tab.on{color:var(--ink);border-bottom-color:var(--amber)}
 .dark .tab{color:#83858C}.dark .tab:hover,.dark .tab.on{color:#F3EFE8}
@@ -215,18 +226,38 @@ nav .links a:hover{opacity:1;color:var(--gold)}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* b2b table */
-.b2b{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
-.b2b th{text-align:left;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke);font-weight:500;padding:10px 12px;border-bottom:1px solid var(--line)}
-.b2b td{padding:12px;border-bottom:1px solid #F0ECE4}
-.b2b tr:hover td{background:#FBF8F3}
-.b2b .st{display:inline-flex;align-items:center;gap:6px;font-size:11px}
-.b2b .pill{width:7px;height:7px;border-radius:50%;background:var(--ok)}
-.b2b .pill.low{background:var(--amber)}
-.b2b .qty{display:inline-flex;align-items:center;border:1px solid var(--line)}
-.b2b .qty button{width:26px;height:26px;border:0;background:#fff;cursor:pointer;font-size:14px;line-height:1;color:var(--ink)}
-.b2b .qty button:hover{background:var(--paper-2)}
-.b2b .qty span{min-width:26px;text-align:center;font-size:12px}
-.b2b .old{text-decoration:line-through;color:#B6B0A6;font-size:11px;margin-right:6px}
+.b2bt{font-family:var(--mono);font-size:13px}
+.b2bh,.b2br{display:grid;grid-template-columns:104px 1.35fr .95fr .85fr .95fr 104px;gap:12px;align-items:center}
+.b2bh{padding:10px 12px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
+.b2br{padding:12px;border-bottom:1px solid #F0ECE4}
+.b2br:hover{background:#FBF8F3}
+.b2br .c em{display:none}
+.b2br .size{font-weight:700}
+.b2br .yours b{font-size:14px}
+.b2br .old{text-decoration:line-through;color:#B6B0A6;font-size:11px;margin-right:6px}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:11px;white-space:nowrap}
+.pill{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:0 0 auto}
+.pill.low{background:var(--amber)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);background:#fff}
+.qty button{width:30px;height:30px;border:0;background:#fff;cursor:pointer;font-size:15px;line-height:1;color:var(--ink)}
+.qty button:hover{background:var(--paper-2)}
+.qty span{min-width:26px;text-align:center;font-size:12px}
+@media(max-width:700px){
+ .tabs{flex-wrap:nowrap}
+ .tab{padding:12px 13px;font-size:10px;letter-spacing:.1em}
+ .b2bh{display:none}
+ .b2br{grid-template-columns:1fr auto;grid-template-areas:"size av" "brand brand" "yours qty";gap:7px 12px;padding:15px 10px}
+ .b2br .size{grid-area:size;font-size:16px}
+ .b2br .brand{grid-area:brand;color:var(--smoke);font-size:12px}
+ .b2br .av{grid-area:av;justify-self:end}
+ .b2br .pub{display:none}
+ .b2br .yours{grid-area:yours;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+ .b2br .yours em{display:block;flex:0 0 100%;font-style:normal;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke);margin-bottom:-2px}
+ .b2br .yours b{font-size:19px}
+ .b2br .qty{grid-area:qty;justify-self:end}
+ .qty button{width:36px;height:36px;font-size:17px}
+ .qty span{min-width:30px;font-size:13px}
+}
 .b2bfoot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:16px 12px 0;border-top:2px solid var(--ink);margin-top:6px;font-family:var(--mono);font-size:13px}
 
 /* stepper */
@@ -479,10 +510,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
           <button class="tab" data-p="p2">Come funziona</button>
         </div>
         <div class="pane on" id="p1">
-          <table class="b2b">
-            <thead><tr><th>Misura</th><th>Marca / stato</th><th>Disponibilità</th><th>Prezzo pubblico</th><th>Il vostro</th><th>Quantità</th></tr></thead>
-            <tbody id="b2brows"></tbody>
-          </table>
+          <div class="b2bt">
+            <div class="b2bh"><span>Misura</span><span>Marca / stato</span><span>Disponibilità</span><span>Prezzo pubblico</span><span>Il vostro</span><span>Quantità</span></div>
+            <div id="b2brows"></div>
+          </div>
           <div class="b2bfoot">
             <div>Sconto rivenditore applicato: <b id="disc">—</b> · pagamento a 30 gg, fattura elettronica</div>
             <div>Totale ordine: <b id="b2btot" style="font-size:18px">0 €</b></div>
@@ -757,21 +788,24 @@ const B2B=[
 ];
 const qty={};
 function b2bRender(){
+  const tot0=Object.values(qty).reduce((a,b)=>a+b,0);
+  const d0=tot0>=20?.20:tot0>=10?.14:tot0>=4?.08:0;
   $('#b2brows').innerHTML=B2B.map((r,i)=>{
-    const n=qty[i]||0,tot=Object.values(qty).reduce((a,b)=>a+b,0);
-    const d=tot>=20?.20:tot>=10?.14:tot>=4?.08:0;
-    const pr=Math.round(r.pub*(1-d));
-    return `<tr><td><b>${r.s}</b></td><td>${r.b}</td>
-      <td><span class="st"><i class="pill ${r.st?'low':''}"></i>${r.q}</span></td>
-      <td>${r.pub} €</td>
-      <td>${d?`<span class="old">${r.pub} €</span>`:''}<b>${pr} €</b></td>
-      <td><span class="qty"><button data-i="${i}" data-v="-1">−</button><span>${n}</span><button data-i="${i}" data-v="1">+</button></span></td></tr>`}).join('');
+    const n=qty[i]||0, pr=Math.round(r.pub*(1-d0));
+    return `<div class="b2br">
+      <div class="c size">${r.s}</div>
+      <div class="c brand">${r.b}</div>
+      <div class="c av"><span class="st"><i class="pill ${r.st?'low':''}"></i>${r.q}</span></div>
+      <div class="c pub">${r.pub} €</div>
+      <div class="c yours"><em>Il vostro prezzo</em>${d0?`<span class="old">${r.pub} €</span>`:''}<b>${pr} €</b></div>
+      <div class="c qty"><button data-i="${i}" data-v="-1">−</button><span>${n}</span><button data-i="${i}" data-v="1">+</button></div>
+    </div>`}).join('');
   const tot=Object.values(qty).reduce((a,b)=>a+b,0);
   const d=tot>=20?.20:tot>=10?.14:tot>=4?.08:0;
   const val=B2B.reduce((a,r,i)=>a+(qty[i]||0)*Math.round(r.pub*(1-d)),0);
   $('#disc').textContent=d?(d*100)+'%':'0% — da 4 pezzi parte lo sconto';
   $('#b2btot').textContent=val.toLocaleString('it-IT')+' €';
-  $$('#b2brows button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#b2brows .qty button').forEach(b=>b.addEventListener('click',()=>{
     const i=+b.dataset.i;qty[i]=Math.max(0,(qty[i]||0)+ +b.dataset.v);b2bRender()}));
 }
 b2bRender();
